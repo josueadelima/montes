@@ -1,0 +1,71 @@
+<div class="title">Contacto</div>
+<form id="contForm" method="post" action="contacto/contacto.php" class="form">
+	<table cellpadding="0" cellspacing="3"  id="contFormTb">
+		<tr>
+			<td id="nombre">
+				<input type="text" name="nombre" class="validate['required']" />
+			</td>
+		</tr>
+		<tr>
+			<td id="tel">
+				<input type="text" name="tel1" class="validate['required','phone']"  />
+			</td>
+		</tr>
+		<tr>
+			<td id="mail">
+				<input type="text" name="correo" class="validate['required','email']"  />
+			</td>
+		</tr>
+		<tr>
+			<td id="donde">
+				<input type="text" name="donde" class="validate['required']"  />
+			</td>
+		</tr>
+		<tr>
+			<td id="preg">
+				<textarea rows="5" name="preg" class="validate['required']">Preguntas...</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="boton" style="padding-left: 146px; padding-right: 5px; float: left;">
+					<a href="#/contacto/index" onclick="document.forms['contForm'].reset();">
+						<img src="img/borrar.png" style="border: none;" />
+					</a>
+				</div>
+				<input type="image" src="img/enviar.png" class="boton" />
+				<!--<div class="boton">
+					<a href="#/contacto/index" class="validate['submit']">
+						<img src="img/enviar.png" style="border: none;" />
+					</a>
+				</div>-->
+			</td>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript" language="javascript">
+  window.addEvent('domready', function(){
+        formcheck = new FormCheck('contForm',
+        {
+        	submitByAjax : true,
+        	onAjaxRequest : function()
+        	{
+        		$('texto').fade([1,0]);
+        	},
+        	onAjaxSuccess : function(response)
+        	{
+        		if(response)
+        		{
+								$('texto').fade([0,1]);
+								alert('Su mensaje fue enviado con éxito, Gracias!');
+								$('contForm').reset();
+        		}
+        		else
+        		{
+        				$('texto').fade([0,1]);
+								alert('Hubo un problema al enviar su mensaje, intentelo de nuevo más tarde, Gracias');
+        		}
+        	}
+        });
+    });
+</script>

@@ -1,0 +1,146 @@
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Montes de Oca y Reyes, Abogados</title>
+		<script type="text/javascript" language="javascript" src="js/mootools-1.2.4-core.js"></script>
+		<script type="text/javascript" language="javascript" src="js/mootools-1.2.4.4-more.js"></script>
+		<script type="text/javascript" language="javascript" src="js/formcheck/lang/es.js"></script>
+		<script type="text/javascript" language="javascript" src="js/formcheck/formcheck.js"></script>
+		<link rel="stylesheet" href="js/formcheck/theme/classic/formcheck.css" type="text/css" media="screen" />
+		<script type="text/javascript" languge="javascript">
+			var chkState;
+			var reqState = false;
+			var stateVar = '';
+
+			function redireccion(uri, contentToUpdate)
+			{
+				var myUri = new URI(uri.href);
+				requestHTML(myUri.get('fragment'), contentToUpdate);
+			}
+
+			function requestHTML(url, contentToUpdate)
+			{
+				var myFx = new Fx.Tween($(contentToUpdate));
+				myFx.addEvent('complete', function() {
+                                        var rand = new Date();
+					var req = new Request.HTML({
+								method: 'get',
+								url: url + '.html?refresh=' + rand.getTime(),
+								update: $(contentToUpdate),
+								onComplete: function() {
+									myFx.removeEvents();
+									myFx.start('opacity', '0', '1');
+									reqState = false;
+								}
+							}).send();
+				});
+				myFx.start('opacity', '1', '0');
+			}
+
+
+			function state()
+			{
+
+				var myUri = new URI(window.location);
+				if(myUri.get('fragment')!='')
+				{
+					if(stateVar!=myUri.get('fragment'))
+					{
+						stateVar = myUri.get('fragment');
+						if(!reqState)
+						{
+							reqState = true;
+							requestHTML(myUri.get('fragment'), 'texto');
+						}
+					}
+				}
+			}
+
+			window.addEvent('domready', function() {
+					chkState = state.periodical(500);
+			});
+		</script>
+		<link href="common.css" rel="StyleSheet" type="text/css"  />
+	</head>
+	<body>
+		<div id="main">
+		<div id="header"></div>
+		<div id="midle">
+			<div id="body">
+				<div id="texto">
+
+				</div>
+				<div id="menu">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+								<a href="#/despacho/index" class="menuLink">DESPACHO</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="img/separador.png" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="#/servicios/index" class="menuLink">SERVICIOS</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="img/separador.png" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="#/socios/index" class="menuLink">SOCIOS</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="img/separador.png" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="#/contacto/index" class="menuLink">CONTACTO</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<img src="img/logo.png" id="logo" />
+			<div id="links">
+					<div id="links1">
+					<div class="linksTitle">Contacto</div>
+					Oficinas generales.<br> Liverpool no. 138<br> Col. Ju&aacute;rez<br> Cuauhtem&oacute;c, C.P. 06500<br> Ciudad de M&eacute;xico<br>
+					Tel. 46303640 <br>Tel. 46303642<br>
+					<!--<a href="mailto:pablo@montesdeocayreyes.com">pablo@montesdeocayreyes.com</a><br>-->
+					<a href="mailto:vanessa@montesdeocayreyes.com">vanessa@montesdeocayreyes.com</a>
+				</div>
+					<div id="links2">
+					<div class="linksTitle">Temas de inter&eacute;s</div>
+						- University of Oxford, <a href="http://www.ox.ac.uk" target="_blank">www.ox.ac.uk</a>, <a href="http://www.law.ox.ac.uk" target="_blank">www.law.ox.ac.uk</a><br> - Instituto de Investigaciones Jur&iacute;dicas de la Universidad Nacional Aut&oacute;noma de M&eacute;xico, <a href="http://www.juridicas.unam.mx" target="_blank">www.juridicas.unam.mx</a><br>
+	- Centro de Investigaci&oacute;n y Docencia Econ&oacute;micas, <a href="http://www.cide.mx" target="_blank">www.cide.mx</a><br>
+	- Instituto Nacional de Ciencias Penales, <a href="http://www.inacipe.gob.mx" target="_blank">www.inacipe.gob.mx</a><br>
+	- Oxford University Press Law Journals, <a href="http://www.oxfordjournals.org/subject/law" target="_blank">www.oxfordjournals.org/subject/law</a>
+					</div>
+					<div id="links3">
+					<div class="linksTitle">Informaci&oacute;n legal</div>
+						- Suprema Corte de Justicia de la Naci&oacute;n, <a href="http://www.scjn.gob.mx" target="_blank">www.scjn.gob.mx</a><br>
+	- Orden jur&iacute;dico nacional, <a href="http://www.ordenjuridico.gob.mx" target="_blank">www.ordenjuridico.gob.mx</a><br>
+	- Diario Oficial de la Federaci&oacute;n, <a href="http://www.dof.gob.mx" target="_blank">www.dof.gob.mx</a><br>
+	- Gaceta Oficial del Distrito Federal, <a href="http://www.consejeria.df.gob.mx" target="_blank">www.consejeria.df.gob.mx</a><br>
+	- C&aacute;mara de Diputados del Congreso de la Uni&oacute;n, <a href="http://www.diputados.gob.mx" target="_blank">www.diputados.gob.mx</a><br><br>
+	- Aviso de Privacidad, <a href="/aviso-de-privacidad" target="_blank">www.montesdeocayreyes.com/aviso-de-privacidad</a><br>
+					</div>
+				</div>
+		</div>
+		</div>
+		</body>
+</html>
+
